@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sales Data Cleaning & Visualization Report</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #1f2933;
+      background: #f7f9fb;
+    }
+    header {
+      background: #203040;
+      color: white;
+      padding: 32px 40px;
+    }
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 20px 48px;
+    }
+    h1, h2 {
+      margin: 0 0 12px;
+    }
+    p {
+      line-height: 1.55;
+    }
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin: 22px 0;
+    }
+    .kpi {
+      background: white;
+      border: 1px solid #d7dee8;
+      border-radius: 8px;
+      padding: 18px;
+    }
+    .kpi span {
+      display: block;
+      color: #52616f;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+    .kpi strong {
+      font-size: 24px;
+    }
+    section {
+      margin-top: 32px;
+    }
+    .charts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
+    }
+    figure {
+      margin: 0;
+      background: white;
+      border: 1px solid #d7dee8;
+      border-radius: 8px;
+      padding: 12px;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .data-table {
+      border-collapse: collapse;
+      width: 100%;
+      background: white;
+      margin-top: 12px;
+    }
+    .data-table th, .data-table td {
+      border: 1px solid #d7dee8;
+      padding: 9px 10px;
+      text-align: left;
+      font-size: 14px;
+    }
+    .data-table th {
+      background: #edf2f7;
+    }
+    .insights li {
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Sales Data Cleaning & Visualization Report</h1>
+    <p>A compact portfolio-style project showing preprocessing, quality checks, and business storytelling.</p>
+  </header>
+  <main>
+    <div class="kpis">
+      <div class="kpi"><span>Total Revenue</span><strong>$31,703.87</strong></div>
+      <div class="kpi"><span>Clean Orders</span><strong>86</strong></div>
+      <div class="kpi"><span>Average Order Value</span><strong>$368.65</strong></div>
+      <div class="kpi"><span>Top Region</span><strong>South</strong></div>
+    </div>
+
+    <section>
+      <h2>Cleaning Summary</h2>
+      <p>The raw file includes duplicates, blank fields, invalid dates, invalid numeric values, and extreme values. The pipeline standardizes text, removes exact duplicates, imputes recoverable fields, recalculates revenue, and caps outliers with the IQR method.</p>
+      <table class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>metric</th>
+      <th>value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>raw_rows</td>
+      <td>88.00</td>
+    </tr>
+    <tr>
+      <td>duplicate_rows_removed</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <td>missing_or_blank_values_before_cleaning</td>
+      <td>3.00</td>
+    </tr>
+    <tr>
+      <td>invalid_dates_removed</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <td>invalid_numeric_values_imputed</td>
+      <td>2.00</td>
+    </tr>
+    <tr>
+      <td>quantity_outliers_capped</td>
+      <td>9.00</td>
+    </tr>
+    <tr>
+      <td>quantity_iqr_lower_cap</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <td>quantity_iqr_upper_cap</td>
+      <td>45.75</td>
+    </tr>
+    <tr>
+      <td>revenue_outliers_capped</td>
+      <td>5.00</td>
+    </tr>
+    <tr>
+      <td>revenue_iqr_lower_cap</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <td>revenue_iqr_upper_cap</td>
+      <td>1120.34</td>
+    </tr>
+    <tr>
+      <td>clean_rows</td>
+      <td>86.00</td>
+    </tr>
+  </tbody>
+</table>
+    </section>
+
+    <section>
+      <h2>Key Findings</h2>
+      <ul class="insights">
+        <li><strong>Electronics</strong> generated the highest revenue by category.</li>
+        <li><strong>South</strong> led regional revenue after cleaning.</li>
+        <li><strong>2026-04</strong> was the strongest month in the dataset.</li>
+        <li>Online orders dominate volume, while higher-ticket products drive most revenue.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Visual Dashboard</h2>
+      <div class="charts">
+        <figure><img src="revenue_by_category.png" alt="Revenue by category"></figure>
+        <figure><img src="revenue_by_region.png" alt="Revenue by region"></figure>
+        <figure><img src="monthly_revenue.png" alt="Monthly revenue trend"></figure>
+        <figure><img src="orders_by_channel.png" alt="Orders by channel"></figure>
+        <figure><img src="top_products.png" alt="Top products by revenue"></figure>
+        <figure><img src="quantity_vs_revenue.png" alt="Quantity versus revenue scatter plot"></figure>
+      </div>
+    </section>
+
+    <section>
+      <h2>Top Products</h2>
+      <table class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>product</th>
+      <th>revenue</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Laptop</td>
+      <td>6070.36</td>
+    </tr>
+    <tr>
+      <td>Tablet</td>
+      <td>4443.54</td>
+    </tr>
+    <tr>
+      <td>Office Chair</td>
+      <td>4097.82</td>
+    </tr>
+    <tr>
+      <td>Monitor</td>
+      <td>3263.58</td>
+    </tr>
+    <tr>
+      <td>Standing Desk</td>
+      <td>2991.20</td>
+    </tr>
+    <tr>
+      <td>Printer</td>
+      <td>1623.76</td>
+    </tr>
+    <tr>
+      <td>Keyboard</td>
+      <td>1609.48</td>
+    </tr>
+    <tr>
+      <td>Filing Cabinet</td>
+      <td>1515.58</td>
+    </tr>
+  </tbody>
+</table>
+    </section>
+  </main>
+</body>
+</html>

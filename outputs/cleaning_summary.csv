@@ -1,0 +1,13 @@
+metric,value
+raw_rows,88.0
+duplicate_rows_removed,1.0
+missing_or_blank_values_before_cleaning,3.0
+invalid_dates_removed,1.0
+invalid_numeric_values_imputed,2.0
+quantity_outliers_capped,9.0
+quantity_iqr_lower_cap,0.0
+quantity_iqr_upper_cap,45.75
+revenue_outliers_capped,5.0
+revenue_iqr_lower_cap,0.0
+revenue_iqr_upper_cap,1120.34
+clean_rows,86.0
